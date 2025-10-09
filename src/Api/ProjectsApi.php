@@ -74,13 +74,13 @@ class ProjectsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'projectNameGet' => [
+        'getProject' => [
             'application/json',
         ],
-        'projectsGet' => [
+        'listProjects' => [
             'application/json',
         ],
-        'searchPost' => [
+        'searchProjects' => [
             'application/json',
         ],
     ];
@@ -132,44 +132,44 @@ class ProjectsApi
     }
 
     /**
-     * Operation projectNameGet
+     * Operation getProject
      *
      * Get a single project by name
      *
      * @param  string $name The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectNameGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return \Aternos\BlobBuild\Model\ProjectResponse|\Aternos\BlobBuild\Model\ErrorResponse
      */
-    public function projectNameGet(
+    public function getProject(
         string $name,
-        string $contentType = self::contentTypes['projectNameGet'][0]
+        string $contentType = self::contentTypes['getProject'][0]
     ): \Aternos\BlobBuild\Model\ProjectResponse|\Aternos\BlobBuild\Model\ErrorResponse
     {
-        list($response) = $this->projectNameGetWithHttpInfo($name, $contentType);
+        list($response) = $this->getProjectWithHttpInfo($name, $contentType);
         return $response;
     }
 
     /**
-     * Operation projectNameGetWithHttpInfo
+     * Operation getProjectWithHttpInfo
      *
      * Get a single project by name
      *
      * @param  string $name The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectNameGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return array of \Aternos\BlobBuild\Model\ProjectResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectNameGetWithHttpInfo(
+    public function getProjectWithHttpInfo(
         string $name,
-        string $contentType = self::contentTypes['projectNameGet'][0]
+        string $contentType = self::contentTypes['getProject'][0]
     ): array
     {
-        $request = $this->projectNameGetRequest($name, $contentType);
+        $request = $this->getProjectRequest($name, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -252,22 +252,22 @@ class ProjectsApi
     }
 
     /**
-     * Operation projectNameGetAsync
+     * Operation getProjectAsync
      *
      * Get a single project by name
      *
      * @param  string $name The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectNameGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function projectNameGetAsync(
+    public function getProjectAsync(
         string $name,
-        string $contentType = self::contentTypes['projectNameGet'][0]
+        string $contentType = self::contentTypes['getProject'][0]
     ): PromiseInterface
     {
-        return $this->projectNameGetAsyncWithHttpInfo($name, $contentType)
+        return $this->getProjectAsyncWithHttpInfo($name, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -276,23 +276,23 @@ class ProjectsApi
     }
 
     /**
-     * Operation projectNameGetAsyncWithHttpInfo
+     * Operation getProjectAsyncWithHttpInfo
      *
      * Get a single project by name
      *
      * @param  string $name The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectNameGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function projectNameGetAsyncWithHttpInfo(
+    public function getProjectAsyncWithHttpInfo(
         string $name,
-        string $contentType = self::contentTypes['projectNameGet'][0]
+        string $contentType = self::contentTypes['getProject'][0]
     ): PromiseInterface
     {
         $returnType = '\Aternos\BlobBuild\Model\ProjectResponse';
-        $request = $this->projectNameGetRequest($name, $contentType);
+        $request = $this->getProjectRequest($name, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -331,24 +331,24 @@ class ProjectsApi
     }
 
     /**
-     * Create request for operation 'projectNameGet'
+     * Create request for operation 'getProject'
      *
      * @param  string $name The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectNameGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProject'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectNameGetRequest(
+    public function getProjectRequest(
         string $name,
-        string $contentType = self::contentTypes['projectNameGet'][0]
+        string $contentType = self::contentTypes['getProject'][0]
     ): Request
     {
 
         // verify the required parameter 'name' is set
         if ($name === null || (is_array($name) && count($name) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $name when calling projectNameGet'
+                'Missing the required parameter $name when calling getProject'
             );
         }
 
@@ -426,40 +426,40 @@ class ProjectsApi
     }
 
     /**
-     * Operation projectsGet
+     * Operation listProjects
      *
      * List all projects
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjects'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return \Aternos\BlobBuild\Model\ProjectListResponse
      */
-    public function projectsGet(
-        string $contentType = self::contentTypes['projectsGet'][0]
+    public function listProjects(
+        string $contentType = self::contentTypes['listProjects'][0]
     ): \Aternos\BlobBuild\Model\ProjectListResponse
     {
-        list($response) = $this->projectsGetWithHttpInfo($contentType);
+        list($response) = $this->listProjectsWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation projectsGetWithHttpInfo
+     * Operation listProjectsWithHttpInfo
      *
      * List all projects
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjects'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return array of \Aternos\BlobBuild\Model\ProjectListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function projectsGetWithHttpInfo(
-        string $contentType = self::contentTypes['projectsGet'][0]
+    public function listProjectsWithHttpInfo(
+        string $contentType = self::contentTypes['listProjects'][0]
     ): array
     {
-        $request = $this->projectsGetRequest($contentType);
+        $request = $this->listProjectsRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -528,20 +528,20 @@ class ProjectsApi
     }
 
     /**
-     * Operation projectsGetAsync
+     * Operation listProjectsAsync
      *
      * List all projects
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjects'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function projectsGetAsync(
-        string $contentType = self::contentTypes['projectsGet'][0]
+    public function listProjectsAsync(
+        string $contentType = self::contentTypes['listProjects'][0]
     ): PromiseInterface
     {
-        return $this->projectsGetAsyncWithHttpInfo($contentType)
+        return $this->listProjectsAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -550,21 +550,21 @@ class ProjectsApi
     }
 
     /**
-     * Operation projectsGetAsyncWithHttpInfo
+     * Operation listProjectsAsyncWithHttpInfo
      *
      * List all projects
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjects'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function projectsGetAsyncWithHttpInfo(
-        string $contentType = self::contentTypes['projectsGet'][0]
+    public function listProjectsAsyncWithHttpInfo(
+        string $contentType = self::contentTypes['listProjects'][0]
     ): PromiseInterface
     {
         $returnType = '\Aternos\BlobBuild\Model\ProjectListResponse';
-        $request = $this->projectsGetRequest($contentType);
+        $request = $this->listProjectsRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -603,15 +603,15 @@ class ProjectsApi
     }
 
     /**
-     * Create request for operation 'projectsGet'
+     * Create request for operation 'listProjects'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['projectsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listProjects'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function projectsGetRequest(
-        string $contentType = self::contentTypes['projectsGet'][0]
+    public function listProjectsRequest(
+        string $contentType = self::contentTypes['listProjects'][0]
     ): Request
     {
 
@@ -681,44 +681,44 @@ class ProjectsApi
     }
 
     /**
-     * Operation searchPost
+     * Operation searchProjects
      *
      * Search for projects by name or description
      *
      * @param  \Aternos\BlobBuild\Model\SearchRequest $search_request search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProjects'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return \Aternos\BlobBuild\Model\ProjectListResponse
      */
-    public function searchPost(
+    public function searchProjects(
         \Aternos\BlobBuild\Model\SearchRequest $search_request,
-        string $contentType = self::contentTypes['searchPost'][0]
+        string $contentType = self::contentTypes['searchProjects'][0]
     ): \Aternos\BlobBuild\Model\ProjectListResponse
     {
-        list($response) = $this->searchPostWithHttpInfo($search_request, $contentType);
+        list($response) = $this->searchProjectsWithHttpInfo($search_request, $contentType);
         return $response;
     }
 
     /**
-     * Operation searchPostWithHttpInfo
+     * Operation searchProjectsWithHttpInfo
      *
      * Search for projects by name or description
      *
      * @param  \Aternos\BlobBuild\Model\SearchRequest $search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProjects'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return array of \Aternos\BlobBuild\Model\ProjectListResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchPostWithHttpInfo(
+    public function searchProjectsWithHttpInfo(
         \Aternos\BlobBuild\Model\SearchRequest $search_request,
-        string $contentType = self::contentTypes['searchPost'][0]
+        string $contentType = self::contentTypes['searchProjects'][0]
     ): array
     {
-        $request = $this->searchPostRequest($search_request, $contentType);
+        $request = $this->searchProjectsRequest($search_request, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -787,22 +787,22 @@ class ProjectsApi
     }
 
     /**
-     * Operation searchPostAsync
+     * Operation searchProjectsAsync
      *
      * Search for projects by name or description
      *
      * @param  \Aternos\BlobBuild\Model\SearchRequest $search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProjects'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function searchPostAsync(
+    public function searchProjectsAsync(
         \Aternos\BlobBuild\Model\SearchRequest $search_request,
-        string $contentType = self::contentTypes['searchPost'][0]
+        string $contentType = self::contentTypes['searchProjects'][0]
     ): PromiseInterface
     {
-        return $this->searchPostAsyncWithHttpInfo($search_request, $contentType)
+        return $this->searchProjectsAsyncWithHttpInfo($search_request, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -811,23 +811,23 @@ class ProjectsApi
     }
 
     /**
-     * Operation searchPostAsyncWithHttpInfo
+     * Operation searchProjectsAsyncWithHttpInfo
      *
      * Search for projects by name or description
      *
      * @param  \Aternos\BlobBuild\Model\SearchRequest $search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProjects'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function searchPostAsyncWithHttpInfo(
+    public function searchProjectsAsyncWithHttpInfo(
         \Aternos\BlobBuild\Model\SearchRequest $search_request,
-        string $contentType = self::contentTypes['searchPost'][0]
+        string $contentType = self::contentTypes['searchProjects'][0]
     ): PromiseInterface
     {
         $returnType = '\Aternos\BlobBuild\Model\ProjectListResponse';
-        $request = $this->searchPostRequest($search_request, $contentType);
+        $request = $this->searchProjectsRequest($search_request, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -866,24 +866,24 @@ class ProjectsApi
     }
 
     /**
-     * Create request for operation 'searchPost'
+     * Create request for operation 'searchProjects'
      *
      * @param  \Aternos\BlobBuild\Model\SearchRequest $search_request (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['searchProjects'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function searchPostRequest(
+    public function searchProjectsRequest(
         \Aternos\BlobBuild\Model\SearchRequest $search_request,
-        string $contentType = self::contentTypes['searchPost'][0]
+        string $contentType = self::contentTypes['searchProjects'][0]
     ): Request
     {
 
         // verify the required parameter 'search_request' is set
         if ($search_request === null || (is_array($search_request) && count($search_request) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $search_request when calling searchPost'
+                'Missing the required parameter $search_request when calling searchProjects'
             );
         }
 

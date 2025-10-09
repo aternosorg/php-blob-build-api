@@ -74,7 +74,7 @@ class UsersApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'usersMeGet' => [
+        'getAuthenticatedUser' => [
             'application/json',
         ],
     ];
@@ -126,36 +126,40 @@ class UsersApi
     }
 
     /**
-     * Operation usersMeGet
+     * Operation getAuthenticatedUser
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersMeGet'] to see the possible values for this operation
+     * Get information about the authenticated user
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthenticatedUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return \Aternos\BlobBuild\Model\UserResponse|\Aternos\BlobBuild\Model\ErrorResponse
      */
-    public function usersMeGet(
-        string $contentType = self::contentTypes['usersMeGet'][0]
+    public function getAuthenticatedUser(
+        string $contentType = self::contentTypes['getAuthenticatedUser'][0]
     ): \Aternos\BlobBuild\Model\UserResponse|\Aternos\BlobBuild\Model\ErrorResponse
     {
-        list($response) = $this->usersMeGetWithHttpInfo($contentType);
+        list($response) = $this->getAuthenticatedUserWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation usersMeGetWithHttpInfo
+     * Operation getAuthenticatedUserWithHttpInfo
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersMeGet'] to see the possible values for this operation
+     * Get information about the authenticated user
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthenticatedUser'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return array of \Aternos\BlobBuild\Model\UserResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function usersMeGetWithHttpInfo(
-        string $contentType = self::contentTypes['usersMeGet'][0]
+    public function getAuthenticatedUserWithHttpInfo(
+        string $contentType = self::contentTypes['getAuthenticatedUser'][0]
     ): array
     {
-        $request = $this->usersMeGetRequest($contentType);
+        $request = $this->getAuthenticatedUserRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -238,18 +242,20 @@ class UsersApi
     }
 
     /**
-     * Operation usersMeGetAsync
+     * Operation getAuthenticatedUserAsync
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersMeGet'] to see the possible values for this operation
+     * Get information about the authenticated user
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthenticatedUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function usersMeGetAsync(
-        string $contentType = self::contentTypes['usersMeGet'][0]
+    public function getAuthenticatedUserAsync(
+        string $contentType = self::contentTypes['getAuthenticatedUser'][0]
     ): PromiseInterface
     {
-        return $this->usersMeGetAsyncWithHttpInfo($contentType)
+        return $this->getAuthenticatedUserAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -258,19 +264,21 @@ class UsersApi
     }
 
     /**
-     * Operation usersMeGetAsyncWithHttpInfo
+     * Operation getAuthenticatedUserAsyncWithHttpInfo
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersMeGet'] to see the possible values for this operation
+     * Get information about the authenticated user
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthenticatedUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function usersMeGetAsyncWithHttpInfo(
-        string $contentType = self::contentTypes['usersMeGet'][0]
+    public function getAuthenticatedUserAsyncWithHttpInfo(
+        string $contentType = self::contentTypes['getAuthenticatedUser'][0]
     ): PromiseInterface
     {
         $returnType = '\Aternos\BlobBuild\Model\UserResponse';
-        $request = $this->usersMeGetRequest($contentType);
+        $request = $this->getAuthenticatedUserRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -309,15 +317,15 @@ class UsersApi
     }
 
     /**
-     * Create request for operation 'usersMeGet'
+     * Create request for operation 'getAuthenticatedUser'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['usersMeGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAuthenticatedUser'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function usersMeGetRequest(
-        string $contentType = self::contentTypes['usersMeGet'][0]
+    public function getAuthenticatedUserRequest(
+        string $contentType = self::contentTypes['getAuthenticatedUser'][0]
     ): Request
     {
 

@@ -74,16 +74,16 @@ class BuildsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'buildsProjectChannelBuildGet' => [
+        'getLatestProjectBuildInChannel' => [
             'application/json',
         ],
-        'buildsProjectChannelGet' => [
+        'getProjectBuild' => [
             'application/json',
         ],
-        'buildsProjectChannelLatestGet' => [
+        'getProjectBuilds' => [
             'application/json',
         ],
-        'buildsProjectGet' => [
+        'getProjectBuildsInChannel' => [
             'application/json',
         ],
     ];
@@ -135,52 +135,48 @@ class BuildsApi
     }
 
     /**
-     * Operation buildsProjectChannelBuildGet
+     * Operation getLatestProjectBuildInChannel
      *
-     * Get a specific build by its build ID for a project in a specific release channel
+     * Get the latest build for a project in a specific release channel
      *
      * @param  string $project The name of the project (required)
      * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  int $build The build ID (build number) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelBuildGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestProjectBuildInChannel'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse
      */
-    public function buildsProjectChannelBuildGet(
+    public function getLatestProjectBuildInChannel(
         string $project,
         string $channel,
-        int $build,
-        string $contentType = self::contentTypes['buildsProjectChannelBuildGet'][0]
+        string $contentType = self::contentTypes['getLatestProjectBuildInChannel'][0]
     ): \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse
     {
-        list($response) = $this->buildsProjectChannelBuildGetWithHttpInfo($project, $channel, $build, $contentType);
+        list($response) = $this->getLatestProjectBuildInChannelWithHttpInfo($project, $channel, $contentType);
         return $response;
     }
 
     /**
-     * Operation buildsProjectChannelBuildGetWithHttpInfo
+     * Operation getLatestProjectBuildInChannelWithHttpInfo
      *
-     * Get a specific build by its build ID for a project in a specific release channel
+     * Get the latest build for a project in a specific release channel
      *
      * @param  string $project The name of the project (required)
      * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  int $build The build ID (build number) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelBuildGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestProjectBuildInChannel'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return array of \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function buildsProjectChannelBuildGetWithHttpInfo(
+    public function getLatestProjectBuildInChannelWithHttpInfo(
         string $project,
         string $channel,
-        int $build,
-        string $contentType = self::contentTypes['buildsProjectChannelBuildGet'][0]
+        string $contentType = self::contentTypes['getLatestProjectBuildInChannel'][0]
     ): array
     {
-        $request = $this->buildsProjectChannelBuildGetRequest($project, $channel, $build, $contentType);
+        $request = $this->getLatestProjectBuildInChannelRequest($project, $channel, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -263,26 +259,24 @@ class BuildsApi
     }
 
     /**
-     * Operation buildsProjectChannelBuildGetAsync
+     * Operation getLatestProjectBuildInChannelAsync
      *
-     * Get a specific build by its build ID for a project in a specific release channel
+     * Get the latest build for a project in a specific release channel
      *
      * @param  string $project The name of the project (required)
      * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  int $build The build ID (build number) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelBuildGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestProjectBuildInChannel'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function buildsProjectChannelBuildGetAsync(
+    public function getLatestProjectBuildInChannelAsync(
         string $project,
         string $channel,
-        int $build,
-        string $contentType = self::contentTypes['buildsProjectChannelBuildGet'][0]
+        string $contentType = self::contentTypes['getLatestProjectBuildInChannel'][0]
     ): PromiseInterface
     {
-        return $this->buildsProjectChannelBuildGetAsyncWithHttpInfo($project, $channel, $build, $contentType)
+        return $this->getLatestProjectBuildInChannelAsyncWithHttpInfo($project, $channel, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -291,27 +285,25 @@ class BuildsApi
     }
 
     /**
-     * Operation buildsProjectChannelBuildGetAsyncWithHttpInfo
+     * Operation getLatestProjectBuildInChannelAsyncWithHttpInfo
      *
-     * Get a specific build by its build ID for a project in a specific release channel
+     * Get the latest build for a project in a specific release channel
      *
      * @param  string $project The name of the project (required)
      * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  int $build The build ID (build number) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelBuildGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestProjectBuildInChannel'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function buildsProjectChannelBuildGetAsyncWithHttpInfo(
+    public function getLatestProjectBuildInChannelAsyncWithHttpInfo(
         string $project,
         string $channel,
-        int $build,
-        string $contentType = self::contentTypes['buildsProjectChannelBuildGet'][0]
+        string $contentType = self::contentTypes['getLatestProjectBuildInChannel'][0]
     ): PromiseInterface
     {
         $returnType = '\Aternos\BlobBuild\Model\BuildResponse';
-        $request = $this->buildsProjectChannelBuildGetRequest($project, $channel, $build, $contentType);
+        $request = $this->getLatestProjectBuildInChannelRequest($project, $channel, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -350,42 +342,369 @@ class BuildsApi
     }
 
     /**
-     * Create request for operation 'buildsProjectChannelBuildGet'
+     * Create request for operation 'getLatestProjectBuildInChannel'
      *
      * @param  string $project The name of the project (required)
      * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  int $build The build ID (build number) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelBuildGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLatestProjectBuildInChannel'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function buildsProjectChannelBuildGetRequest(
+    public function getLatestProjectBuildInChannelRequest(
         string $project,
         string $channel,
-        int $build,
-        string $contentType = self::contentTypes['buildsProjectChannelBuildGet'][0]
+        string $contentType = self::contentTypes['getLatestProjectBuildInChannel'][0]
     ): Request
     {
 
         // verify the required parameter 'project' is set
         if ($project === null || (is_array($project) && count($project) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $project when calling buildsProjectChannelBuildGet'
+                'Missing the required parameter $project when calling getLatestProjectBuildInChannel'
             );
         }
 
         // verify the required parameter 'channel' is set
         if ($channel === null || (is_array($channel) && count($channel) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $channel when calling buildsProjectChannelBuildGet'
+                'Missing the required parameter $channel when calling getLatestProjectBuildInChannel'
+            );
+        }
+
+
+        $resourcePath = '/builds/{project}/{channel}/latest';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($project !== null) {
+            $resourcePath = str_replace(
+                '{' . 'project' . '}',
+                ObjectSerializer::toPathValue($project),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($channel !== null) {
+            $resourcePath = str_replace(
+                '{' . 'channel' . '}',
+                ObjectSerializer::toPathValue($channel),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getProjectBuild
+     *
+     * Get a specific build by its build ID for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  int $build The build ID (build number) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuild'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse
+     */
+    public function getProjectBuild(
+        string $project,
+        string $channel,
+        int $build,
+        string $contentType = self::contentTypes['getProjectBuild'][0]
+    ): \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse
+    {
+        list($response) = $this->getProjectBuildWithHttpInfo($project, $channel, $build, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getProjectBuildWithHttpInfo
+     *
+     * Get a specific build by its build ID for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  int $build The build ID (build number) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuild'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return array of \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getProjectBuildWithHttpInfo(
+        string $project,
+        string $channel,
+        int $build,
+        string $contentType = self::contentTypes['getProjectBuild'][0]
+    ): array
+    {
+        $request = $this->getProjectBuildRequest($project, $channel, $build, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Aternos\BlobBuild\Model\BuildResponse',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Aternos\BlobBuild\Model\ErrorResponse',
+                        $request,
+                        $response,
+                    );
+            }
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Aternos\BlobBuild\Model\BuildResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\BlobBuild\Model\BuildResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\BlobBuild\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getProjectBuildAsync
+     *
+     * Get a specific build by its build ID for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  int $build The build ID (build number) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuild'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function getProjectBuildAsync(
+        string $project,
+        string $channel,
+        int $build,
+        string $contentType = self::contentTypes['getProjectBuild'][0]
+    ): PromiseInterface
+    {
+        return $this->getProjectBuildAsyncWithHttpInfo($project, $channel, $build, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getProjectBuildAsyncWithHttpInfo
+     *
+     * Get a specific build by its build ID for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  int $build The build ID (build number) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuild'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function getProjectBuildAsyncWithHttpInfo(
+        string $project,
+        string $channel,
+        int $build,
+        string $contentType = self::contentTypes['getProjectBuild'][0]
+    ): PromiseInterface
+    {
+        $returnType = '\Aternos\BlobBuild\Model\BuildResponse';
+        $request = $this->getProjectBuildRequest($project, $channel, $build, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getProjectBuild'
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  int $build The build ID (build number) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuild'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getProjectBuildRequest(
+        string $project,
+        string $channel,
+        int $build,
+        string $contentType = self::contentTypes['getProjectBuild'][0]
+    ): Request
+    {
+
+        // verify the required parameter 'project' is set
+        if ($project === null || (is_array($project) && count($project) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $project when calling getProjectBuild'
+            );
+        }
+
+        // verify the required parameter 'channel' is set
+        if ($channel === null || (is_array($channel) && count($channel) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $channel when calling getProjectBuild'
             );
         }
 
         // verify the required parameter 'build' is set
         if ($build === null || (is_array($build) && count($build) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $build when calling buildsProjectChannelBuildGet'
+                'Missing the required parameter $build when calling getProjectBuild'
             );
         }
 
@@ -479,682 +798,44 @@ class BuildsApi
     }
 
     /**
-     * Operation buildsProjectChannelGet
-     *
-     * Get all builds for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelGet'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return \Aternos\BlobBuild\Model\BuildListResponse|\Aternos\BlobBuild\Model\ErrorResponse
-     */
-    public function buildsProjectChannelGet(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelGet'][0]
-    ): \Aternos\BlobBuild\Model\BuildListResponse|\Aternos\BlobBuild\Model\ErrorResponse
-    {
-        list($response) = $this->buildsProjectChannelGetWithHttpInfo($project, $channel, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation buildsProjectChannelGetWithHttpInfo
-     *
-     * Get all builds for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelGet'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return array of \Aternos\BlobBuild\Model\BuildListResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function buildsProjectChannelGetWithHttpInfo(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelGet'][0]
-    ): array
-    {
-        $request = $this->buildsProjectChannelGetRequest($project, $channel, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            switch($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Aternos\BlobBuild\Model\BuildListResponse',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Aternos\BlobBuild\Model\ErrorResponse',
-                        $request,
-                        $response,
-                    );
-            }
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Aternos\BlobBuild\Model\BuildListResponse',
-                $request,
-                $response,
-            );
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aternos\BlobBuild\Model\BuildListResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aternos\BlobBuild\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-        
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation buildsProjectChannelGetAsync
-     *
-     * Get all builds for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelGet'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
-     */
-    public function buildsProjectChannelGetAsync(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelGet'][0]
-    ): PromiseInterface
-    {
-        return $this->buildsProjectChannelGetAsyncWithHttpInfo($project, $channel, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation buildsProjectChannelGetAsyncWithHttpInfo
-     *
-     * Get all builds for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelGet'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
-     */
-    public function buildsProjectChannelGetAsyncWithHttpInfo(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelGet'][0]
-    ): PromiseInterface
-    {
-        $returnType = '\Aternos\BlobBuild\Model\BuildListResponse';
-        $request = $this->buildsProjectChannelGetRequest($project, $channel, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'buildsProjectChannelGet'
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelGet'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function buildsProjectChannelGetRequest(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelGet'][0]
-    ): Request
-    {
-
-        // verify the required parameter 'project' is set
-        if ($project === null || (is_array($project) && count($project) === 0)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $project when calling buildsProjectChannelGet'
-            );
-        }
-
-        // verify the required parameter 'channel' is set
-        if ($channel === null || (is_array($channel) && count($channel) === 0)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $channel when calling buildsProjectChannelGet'
-            );
-        }
-
-
-        $resourcePath = '/builds/{project}/{channel}/';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($project !== null) {
-            $resourcePath = str_replace(
-                '{' . 'project' . '}',
-                ObjectSerializer::toPathValue($project),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($channel !== null) {
-            $resourcePath = str_replace(
-                '{' . 'channel' . '}',
-                ObjectSerializer::toPathValue($channel),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation buildsProjectChannelLatestGet
-     *
-     * Get the latest build for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelLatestGet'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse
-     */
-    public function buildsProjectChannelLatestGet(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelLatestGet'][0]
-    ): \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse
-    {
-        list($response) = $this->buildsProjectChannelLatestGetWithHttpInfo($project, $channel, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation buildsProjectChannelLatestGetWithHttpInfo
-     *
-     * Get the latest build for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelLatestGet'] to see the possible values for this operation
-     *
-     * @throws ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws InvalidArgumentException
-     * @return array of \Aternos\BlobBuild\Model\BuildResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function buildsProjectChannelLatestGetWithHttpInfo(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelLatestGet'][0]
-    ): array
-    {
-        $request = $this->buildsProjectChannelLatestGetRequest($project, $channel, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            switch($statusCode) {
-                case 200:
-                    return $this->handleResponseWithDataType(
-                        '\Aternos\BlobBuild\Model\BuildResponse',
-                        $request,
-                        $response,
-                    );
-                case 404:
-                    return $this->handleResponseWithDataType(
-                        '\Aternos\BlobBuild\Model\ErrorResponse',
-                        $request,
-                        $response,
-                    );
-            }
-            
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return $this->handleResponseWithDataType(
-                '\Aternos\BlobBuild\Model\BuildResponse',
-                $request,
-                $response,
-            );
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aternos\BlobBuild\Model\BuildResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-                case 404:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Aternos\BlobBuild\Model\ErrorResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    throw $e;
-            }
-        
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation buildsProjectChannelLatestGetAsync
-     *
-     * Get the latest build for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelLatestGet'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
-     */
-    public function buildsProjectChannelLatestGetAsync(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelLatestGet'][0]
-    ): PromiseInterface
-    {
-        return $this->buildsProjectChannelLatestGetAsyncWithHttpInfo($project, $channel, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation buildsProjectChannelLatestGetAsyncWithHttpInfo
-     *
-     * Get the latest build for a project in a specific release channel
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelLatestGet'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return PromiseInterface
-     */
-    public function buildsProjectChannelLatestGetAsyncWithHttpInfo(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelLatestGet'][0]
-    ): PromiseInterface
-    {
-        $returnType = '\Aternos\BlobBuild\Model\BuildResponse';
-        $request = $this->buildsProjectChannelLatestGetRequest($project, $channel, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'buildsProjectChannelLatestGet'
-     *
-     * @param  string $project The name of the project (required)
-     * @param  string $channel The release channel (e.g., stable, beta) (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectChannelLatestGet'] to see the possible values for this operation
-     *
-     * @throws InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function buildsProjectChannelLatestGetRequest(
-        string $project,
-        string $channel,
-        string $contentType = self::contentTypes['buildsProjectChannelLatestGet'][0]
-    ): Request
-    {
-
-        // verify the required parameter 'project' is set
-        if ($project === null || (is_array($project) && count($project) === 0)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $project when calling buildsProjectChannelLatestGet'
-            );
-        }
-
-        // verify the required parameter 'channel' is set
-        if ($channel === null || (is_array($channel) && count($channel) === 0)) {
-            throw new InvalidArgumentException(
-                'Missing the required parameter $channel when calling buildsProjectChannelLatestGet'
-            );
-        }
-
-
-        $resourcePath = '/builds/{project}/{channel}/latest';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($project !== null) {
-            $resourcePath = str_replace(
-                '{' . 'project' . '}',
-                ObjectSerializer::toPathValue($project),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($channel !== null) {
-            $resourcePath = str_replace(
-                '{' . 'channel' . '}',
-                ObjectSerializer::toPathValue($channel),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['application/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation buildsProjectGet
+     * Operation getProjectBuilds
      *
      * List builds for a project
      *
      * @param  string $project The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuilds'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return \Aternos\BlobBuild\Model\BuildMapResponse|\Aternos\BlobBuild\Model\ErrorResponse
      */
-    public function buildsProjectGet(
+    public function getProjectBuilds(
         string $project,
-        string $contentType = self::contentTypes['buildsProjectGet'][0]
+        string $contentType = self::contentTypes['getProjectBuilds'][0]
     ): \Aternos\BlobBuild\Model\BuildMapResponse|\Aternos\BlobBuild\Model\ErrorResponse
     {
-        list($response) = $this->buildsProjectGetWithHttpInfo($project, $contentType);
+        list($response) = $this->getProjectBuildsWithHttpInfo($project, $contentType);
         return $response;
     }
 
     /**
-     * Operation buildsProjectGetWithHttpInfo
+     * Operation getProjectBuildsWithHttpInfo
      *
      * List builds for a project
      *
      * @param  string $project The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuilds'] to see the possible values for this operation
      *
      * @throws ApiException on non-2xx response or if the response body is not in the expected format
      * @throws InvalidArgumentException
      * @return array of \Aternos\BlobBuild\Model\BuildMapResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function buildsProjectGetWithHttpInfo(
+    public function getProjectBuildsWithHttpInfo(
         string $project,
-        string $contentType = self::contentTypes['buildsProjectGet'][0]
+        string $contentType = self::contentTypes['getProjectBuilds'][0]
     ): array
     {
-        $request = $this->buildsProjectGetRequest($project, $contentType);
+        $request = $this->getProjectBuildsRequest($project, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1237,22 +918,22 @@ class BuildsApi
     }
 
     /**
-     * Operation buildsProjectGetAsync
+     * Operation getProjectBuildsAsync
      *
      * List builds for a project
      *
      * @param  string $project The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuilds'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function buildsProjectGetAsync(
+    public function getProjectBuildsAsync(
         string $project,
-        string $contentType = self::contentTypes['buildsProjectGet'][0]
+        string $contentType = self::contentTypes['getProjectBuilds'][0]
     ): PromiseInterface
     {
-        return $this->buildsProjectGetAsyncWithHttpInfo($project, $contentType)
+        return $this->getProjectBuildsAsyncWithHttpInfo($project, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1261,23 +942,23 @@ class BuildsApi
     }
 
     /**
-     * Operation buildsProjectGetAsyncWithHttpInfo
+     * Operation getProjectBuildsAsyncWithHttpInfo
      *
      * List builds for a project
      *
      * @param  string $project The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuilds'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return PromiseInterface
      */
-    public function buildsProjectGetAsyncWithHttpInfo(
+    public function getProjectBuildsAsyncWithHttpInfo(
         string $project,
-        string $contentType = self::contentTypes['buildsProjectGet'][0]
+        string $contentType = self::contentTypes['getProjectBuilds'][0]
     ): PromiseInterface
     {
         $returnType = '\Aternos\BlobBuild\Model\BuildMapResponse';
-        $request = $this->buildsProjectGetRequest($project, $contentType);
+        $request = $this->getProjectBuildsRequest($project, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1316,24 +997,24 @@ class BuildsApi
     }
 
     /**
-     * Create request for operation 'buildsProjectGet'
+     * Create request for operation 'getProjectBuilds'
      *
      * @param  string $project The name of the project (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['buildsProjectGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuilds'] to see the possible values for this operation
      *
      * @throws InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function buildsProjectGetRequest(
+    public function getProjectBuildsRequest(
         string $project,
-        string $contentType = self::contentTypes['buildsProjectGet'][0]
+        string $contentType = self::contentTypes['getProjectBuilds'][0]
     ): Request
     {
 
         // verify the required parameter 'project' is set
         if ($project === null || (is_array($project) && count($project) === 0)) {
             throw new InvalidArgumentException(
-                'Missing the required parameter $project when calling buildsProjectGet'
+                'Missing the required parameter $project when calling getProjectBuilds'
             );
         }
 
@@ -1352,6 +1033,325 @@ class BuildsApi
             $resourcePath = str_replace(
                 '{' . 'project' . '}',
                 ObjectSerializer::toPathValue($project),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getProjectBuildsInChannel
+     *
+     * Get all builds for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuildsInChannel'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return \Aternos\BlobBuild\Model\BuildListResponse|\Aternos\BlobBuild\Model\ErrorResponse
+     */
+    public function getProjectBuildsInChannel(
+        string $project,
+        string $channel,
+        string $contentType = self::contentTypes['getProjectBuildsInChannel'][0]
+    ): \Aternos\BlobBuild\Model\BuildListResponse|\Aternos\BlobBuild\Model\ErrorResponse
+    {
+        list($response) = $this->getProjectBuildsInChannelWithHttpInfo($project, $channel, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getProjectBuildsInChannelWithHttpInfo
+     *
+     * Get all builds for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuildsInChannel'] to see the possible values for this operation
+     *
+     * @throws ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws InvalidArgumentException
+     * @return array of \Aternos\BlobBuild\Model\BuildListResponse|\Aternos\BlobBuild\Model\ErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getProjectBuildsInChannelWithHttpInfo(
+        string $project,
+        string $channel,
+        string $contentType = self::contentTypes['getProjectBuildsInChannel'][0]
+    ): array
+    {
+        $request = $this->getProjectBuildsInChannelRequest($project, $channel, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Aternos\BlobBuild\Model\BuildListResponse',
+                        $request,
+                        $response,
+                    );
+                case 404:
+                    return $this->handleResponseWithDataType(
+                        '\Aternos\BlobBuild\Model\ErrorResponse',
+                        $request,
+                        $response,
+                    );
+            }
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Aternos\BlobBuild\Model\BuildListResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\BlobBuild\Model\BuildListResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 404:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Aternos\BlobBuild\Model\ErrorResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getProjectBuildsInChannelAsync
+     *
+     * Get all builds for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuildsInChannel'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function getProjectBuildsInChannelAsync(
+        string $project,
+        string $channel,
+        string $contentType = self::contentTypes['getProjectBuildsInChannel'][0]
+    ): PromiseInterface
+    {
+        return $this->getProjectBuildsInChannelAsyncWithHttpInfo($project, $channel, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getProjectBuildsInChannelAsyncWithHttpInfo
+     *
+     * Get all builds for a project in a specific release channel
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuildsInChannel'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return PromiseInterface
+     */
+    public function getProjectBuildsInChannelAsyncWithHttpInfo(
+        string $project,
+        string $channel,
+        string $contentType = self::contentTypes['getProjectBuildsInChannel'][0]
+    ): PromiseInterface
+    {
+        $returnType = '\Aternos\BlobBuild\Model\BuildListResponse';
+        $request = $this->getProjectBuildsInChannelRequest($project, $channel, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getProjectBuildsInChannel'
+     *
+     * @param  string $project The name of the project (required)
+     * @param  string $channel The release channel (e.g., stable, beta) (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getProjectBuildsInChannel'] to see the possible values for this operation
+     *
+     * @throws InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getProjectBuildsInChannelRequest(
+        string $project,
+        string $channel,
+        string $contentType = self::contentTypes['getProjectBuildsInChannel'][0]
+    ): Request
+    {
+
+        // verify the required parameter 'project' is set
+        if ($project === null || (is_array($project) && count($project) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $project when calling getProjectBuildsInChannel'
+            );
+        }
+
+        // verify the required parameter 'channel' is set
+        if ($channel === null || (is_array($channel) && count($channel) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $channel when calling getProjectBuildsInChannel'
+            );
+        }
+
+
+        $resourcePath = '/builds/{project}/{channel}/';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($project !== null) {
+            $resourcePath = str_replace(
+                '{' . 'project' . '}',
+                ObjectSerializer::toPathValue($project),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($channel !== null) {
+            $resourcePath = str_replace(
+                '{' . 'channel' . '}',
+                ObjectSerializer::toPathValue($channel),
                 $resourcePath
             );
         }
