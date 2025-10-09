@@ -1,0 +1,425 @@
+openapi: 3.0.1
+info:
+  title: blob.build API
+  version: "1.0"
+servers:
+  - url: https://blob.build/api
+paths:
+  /users/@me:
+    get:
+      tags:
+        - users
+      responses:
+        '200':
+          description: User information
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - BearerAuth: [ ]
+  /search:
+    post:
+      tags:
+        - projects
+      summary: Search for projects by name or description
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The search query string
+                  maxLength: 100
+              required:
+                - query
+      responses:
+        '200':
+          description: A list of projects matching the search query
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Project'
+  /projects:
+    get:
+      tags:
+        - projects
+      summary: List all projects
+      responses:
+        '200':
+          description: A list of projects
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Project'
+  /project/{name}:
+    get:
+      tags:
+        - projects
+      summary: Get a single project by name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the project
+      responses:
+        '200':
+          description: A single project
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Project'
+        404:
+          $ref: '#/components/responses/ProjectNotFound'
+  /builds/{project}:
+    get:
+      tags:
+        - builds
+      summary: List builds for a project
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the project
+      responses:
+        '200':
+          description: A list of builds for the specified project
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Build'
+        404:
+          $ref: '#/components/responses/ProjectNotFound'
+  /builds/{project}/{channel}/:
+    get:
+      tags:
+        - builds
+      summary: Get all builds for a project in a specific release channel
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the project
+        - name: channel
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The release channel (e.g., stable, beta)
+      responses:
+        '200':
+          description: All builds for the project in the specified release channel
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Build'
+        404:
+          $ref: '#/components/responses/ProjectOrChannelNotFound'
+  /builds/{project}/{channel}/latest:
+    get:
+      tags:
+        - builds
+      summary: Get the latest build for a project in a specific release channel
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the project
+        - name: channel
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The release channel (e.g., stable, beta)
+      responses:
+        '200':
+          description: The latest build for the project in the specified release channel
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Build'
+        404:
+          $ref: '#/components/responses/ProjectOrChannelNotFound'
+  /builds/{project}/{channel}/{build}:
+    get:
+      tags:
+        - builds
+      summary: Get a specific build by its build ID for a project in a specific release channel
+      parameters:
+        - name: project
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The name of the project
+        - name: channel
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The release channel (e.g., stable, beta)
+        - name: build
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+          description: The build ID (build number)
+      responses:
+        '200':
+          description: The specified build for the project in the specified release channel
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - type: object
+                    properties:
+                      data:
+                        $ref: '#/components/schemas/Build'
+        404:
+          description: Project, release channel or build not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  responses:
+    ProjectNotFound:
+      description: Project not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ProjectOrChannelNotFound:
+      description: Project or release channel not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+        data:
+          nullable: true
+          description: Response data
+      required:
+        - success
+        - message
+        - data
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          description: Error message
+        code:
+          type: number
+          format: int32
+          description: An error code
+      required:
+        - success
+        - error
+        - code
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The user's name
+        oauthProvider:
+          type: string
+          nullable: true
+          description: The OAuth provider used for authentication
+          enum:
+            - github
+        oauthId:
+          type: string
+          nullable: true
+          description: The OAuth ID from the provider
+        apiToken:
+          type: string
+          description: The user's API token
+        flags:
+          type: number
+          description: Bitfield representing user flags
+        betaFlags:
+          type: array
+          items:
+            type: string
+            description: List of beta features enabled for the user
+      required:
+        - name
+        - oauthProvider
+        - oauthId
+        - apiToken
+        - flags
+        - betaFlags
+    Project:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Project owner's name
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        repoLink:
+          nullable: true
+          type: string
+          format: uri
+        wikiLink:
+          nullable: true
+          type: string
+          format: uri
+        releaseChannels:
+          type: array
+          items:
+            type: string
+        defaultReleaseChannel:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+            supportedVersions:
+              type: string
+            dependencies:
+              type: array
+              items:
+                type: string
+            fileNaming:
+              type: string
+      required:
+        - owner
+        - name
+        - description
+        - repoLink
+        - wikiLink
+        - releaseChannels
+        - defaultReleaseChannel
+    Build:
+      type: object
+      properties:
+        projectName:
+          type: string
+          description: The name of the project
+        releaseChannel:
+          type: string
+          description: The release channel of the build
+        buildId:
+          type: number
+          format: int32
+          description: The build number. Not globally unique, only unique per project.
+        checksum:
+          type: string
+          description: SHA256 checksum of the build file
+        fileDownloadUrl:
+          type: string
+          format: uri
+          description: URL to download the build file
+        supportedVersions:
+          type: string
+          description: Supported versions for this build
+        dependencies:
+          type: array
+          items:
+            type: string
+            description: List of dependencies for this build
+        releaseNotes:
+          type: string
+          nullable: true
+          description: Release notes for this build
+        commitHash:
+          type: string
+          nullable: true
+          description: The commit hash associated with this build
+        commitLink:
+          type: string
+          format: uri
+          nullable: true
+          description: URL to the commit associated with this build
+      required:
+        - projectName
+        - releaseChannel
+        - buildId
+        - checksum
+        - fileDownloadUrl
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
