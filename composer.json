@@ -1,0 +1,36 @@
+{
+    "name": "aternos/blob-build",
+    "type": "library",
+    "description": "PHP client for the blob.build API. This client is based on OpenAPI.",
+    "keywords": [
+        "blob.build",
+        "slimefun",
+        "php",
+        "api"
+    ],
+    "homepage": "https://github.com/aternosorg/php-blob-build-api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aternos GmbH",
+            "homepage": "https://aternos.gmbh"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.4.5",
+        "guzzlehttp/psr7": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.3"
+    },
+    "autoload": {
+        "psr-4": { "Aternos\\BlobBuild\\" : "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Aternos\\BlobBuild\\Test\\" : "tests/" }
+    }
+}
