@@ -15,12 +15,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserResponse'
         '401':
           description: Unauthorized
           content:
@@ -39,28 +34,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                query:
-                  type: string
-                  description: The search query string
-                  maxLength: 100
-              required:
-                - query
+              $ref: '#/components/schemas/SearchRequest'
       responses:
         '200':
           description: A list of projects matching the search query
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Project'
+                $ref: '#/components/schemas/ProjectListResponse'
   /projects:
     get:
       tags:
@@ -72,14 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Project'
+                $ref: '#/components/schemas/ProjectListResponse'
   /project/{name}:
     get:
       tags:
@@ -98,12 +72,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        $ref: '#/components/schemas/Project'
+                $ref: '#/components/schemas/ProjectResponse'
         404:
           $ref: '#/components/responses/ProjectNotFound'
   /builds/{project}:
@@ -124,16 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: object
-                        additionalProperties:
-                          type: array
-                          items:
-                            $ref: '#/components/schemas/Build'
+                $ref: '#/components/schemas/BuildMapResponse'
         404:
           $ref: '#/components/responses/ProjectNotFound'
   /builds/{project}/{channel}/:
@@ -160,14 +120,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/Build'
+                $ref: '#/components/schemas/BuildListResponse'
         404:
           $ref: '#/components/responses/ProjectOrChannelNotFound'
   /builds/{project}/{channel}/latest:
@@ -194,12 +147,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        $ref: '#/components/schemas/Build'
+                $ref: '#/components/schemas/BuildResponse'
         404:
           $ref: '#/components/responses/ProjectOrChannelNotFound'
   /builds/{project}/{channel}/{build}:
@@ -233,12 +181,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/SuccessResponse'
-                  - type: object
-                    properties:
-                      data:
-                        $ref: '#/components/schemas/Build'
+                $ref: '#/components/schemas/BuildResponse'
         404:
           description: Project, release channel or build not found
           content:
@@ -292,6 +235,13 @@ components:
         - success
         - error
         - code
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/User'
     User:
       type: object
       properties:
@@ -326,6 +276,31 @@ components:
         - apiToken
         - flags
         - betaFlags
+    SearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: The search query string
+          maxLength: 100
+      required:
+        - query
+    ProjectListResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Project'
+    ProjectResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Project'
     Project:
       type: object
       properties:
@@ -372,6 +347,33 @@ components:
         - wikiLink
         - releaseChannels
         - defaultReleaseChannel
+    BuildMapResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+    BuildListResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Build'
+    BuildResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Build'
     Build:
       type: object
       properties:
