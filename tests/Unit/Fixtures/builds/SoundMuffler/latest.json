@@ -1,0 +1,21 @@
+{
+    "success": true,
+    "message": "Success",
+    "data": {
+        "projectName": "SoundMuffler",
+        "releaseChannel": "Dev",
+        "buildId": 1,
+        "build_id": 1,
+        "checksum": "6228088d899da856a1542c725105aa86eac9c48cc8b97d0cf07972bc55276b45",
+        "fileDownloadUrl": "https://blob.build/dl/SoundMuffler/Dev/latest",
+        "file_download_url": "https://blob.build/dl/SoundMuffler/Dev/latest",
+        "supportedVersions": "1.20+",
+        "dependencies": [
+            "ProtocolLib",
+            "Slimefun"
+        ],
+        "releaseNotes": "are we on blob builds now?",
+        "commitHash": "e341d090b0cd666aff0104ebf85a97380a977745",
+        "commitLink": "https://github.com/Slimefun-Addon-Community/SoundMuffler/commit/e341d090b0cd666aff0104ebf85a97380a977745"
+    }
+}

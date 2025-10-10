@@ -1,0 +1,41 @@
+{
+    "success": true,
+    "message": "Success",
+    "data": [
+        {
+            "owner": "balugaq",
+            "name": "SlimefunTimeit",
+            "description": "Display the slimefun ticks visually",
+            "repoLink": "https://github.com/balugaq/SlimefunTimeit",
+            "wikiLink": null,
+            "releaseChannels": [
+                "Dev"
+            ],
+            "defaultReleaseChannel": {
+                "name": "Dev",
+                "supportedVersions": "1.20+",
+                "dependencies": [],
+                "fileNaming": "$project.jar"
+            }
+        },
+        {
+            "owner": "J3fftw",
+            "name": "SoundMuffler",
+            "description": "SoundMuffler is a Slimefun4 Addon that is created to stop the horrible noices from mob farms, piston machines and many other things that make sound. By using a SoundMuffler you are able to reduce the sound or even stop the sounds in an area.",
+            "repoLink": "https://github.com/Slimefun-Addon-Community/SoundMuffler",
+            "wikiLink": null,
+            "releaseChannels": [
+                "Dev"
+            ],
+            "defaultReleaseChannel": {
+                "name": "Dev",
+                "supportedVersions": "1.20+",
+                "dependencies": [
+                    "Slimefun",
+                    "ProtocolLib"
+                ],
+                "fileNaming": "$project.jar"
+            }
+        }
+    ]
+}

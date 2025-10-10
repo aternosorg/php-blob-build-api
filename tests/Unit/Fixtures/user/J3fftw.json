@@ -1,0 +1,12 @@
+{
+    "success": true,
+    "message": "Success",
+    "data": {
+        "name": "J3fftw",
+        "oauthProvider": "github",
+        "oauthId": "8468451",
+        "apiToken": "KcehKsHohfxnyuHHW6LYwMFhDYQaD9CtjCtktnm2PdasPvenmBrYeQFcBwXagbZd",
+        "flags": 0,
+        "betaFlags": []
+    }
+}
