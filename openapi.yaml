@@ -58,7 +58,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ProjectListResponse'
-  /project/{name}:
+  /projects/{name}:
     get:
       summary: Get a single project by name
       operationId: getProject

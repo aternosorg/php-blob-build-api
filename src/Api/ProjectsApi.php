@@ -353,7 +353,7 @@ class ProjectsApi
         }
 
 
-        $resourcePath = '/project/{name}';
+        $resourcePath = '/projects/{name}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
