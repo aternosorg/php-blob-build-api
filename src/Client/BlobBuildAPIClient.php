@@ -30,7 +30,7 @@ class BlobBuildAPIClient
         $this->httpClient = $httpClient;
         if ($configuration === null) {
             $configuration = new Configuration();
-            $configuration->setUserAgent($userAgent ?? "php-blob-build-api/1.0.0");
+            $configuration->setUserAgent($userAgent ?? "php-blob-build-api/1.0.1");
             if ($apiToken !== null) {
                 $configuration->setAccessToken($apiToken);
             }

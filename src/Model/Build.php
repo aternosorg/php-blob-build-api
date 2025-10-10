@@ -60,7 +60,7 @@ class Build implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'project_name' => 'string',
         'release_channel' => 'string',
-        'build_id' => 'float',
+        'build_id' => 'int',
         'checksum' => 'string',
         'file_download_url' => 'string',
         'supported_versions' => 'string',
@@ -422,9 +422,9 @@ class Build implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets build_id
      *
-     * @return float
+     * @return int
      */
-    public function getBuildId(): float
+    public function getBuildId(): int
     {
         return $this->container['build_id'];
     }
@@ -432,11 +432,11 @@ class Build implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets build_id
      *
-     * @param float $build_id The build number. Not globally unique, only unique per project.
+     * @param int $build_id The build number. Not globally unique, only unique per project.
      *
      * @return $this
      */
-    public function setBuildId(float $build_id): static
+    public function setBuildId(int $build_id): static
     {
         if (is_null($build_id)) {
             throw new InvalidArgumentException('non-nullable build_id cannot be null');

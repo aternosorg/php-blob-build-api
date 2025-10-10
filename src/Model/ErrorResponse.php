@@ -60,7 +60,7 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     protected static array $openAPITypes = [
         'success' => 'bool',
         'error' => 'string',
-        'code' => 'float'
+        'code' => 'int'
     ];
 
     /**
@@ -367,9 +367,9 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets code
      *
-     * @return float
+     * @return int
      */
-    public function getCode(): float
+    public function getCode(): int
     {
         return $this->container['code'];
     }
@@ -377,11 +377,11 @@ class ErrorResponse implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets code
      *
-     * @param float $code An error code
+     * @param int $code An error code
      *
      * @return $this
      */
-    public function setCode(float $code): static
+    public function setCode(int $code): static
     {
         if (is_null($code)) {
             throw new InvalidArgumentException('non-nullable code cannot be null');

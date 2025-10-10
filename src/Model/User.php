@@ -62,7 +62,7 @@ class User implements ModelInterface, ArrayAccess, JsonSerializable
         'oauth_provider' => 'string',
         'oauth_id' => 'string',
         'api_token' => 'string',
-        'flags' => 'float',
+        'flags' => 'int',
         'beta_flags' => 'string[]'
     ];
 
@@ -497,9 +497,9 @@ class User implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Gets flags
      *
-     * @return float
+     * @return int
      */
-    public function getFlags(): float
+    public function getFlags(): int
     {
         return $this->container['flags'];
     }
@@ -507,11 +507,11 @@ class User implements ModelInterface, ArrayAccess, JsonSerializable
     /**
      * Sets flags
      *
-     * @param float $flags Bitfield representing user flags
+     * @param int $flags Bitfield representing user flags
      *
      * @return $this
      */
-    public function setFlags(float $flags): static
+    public function setFlags(int $flags): static
     {
         if (is_null($flags)) {
             throw new InvalidArgumentException('non-nullable flags cannot be null');

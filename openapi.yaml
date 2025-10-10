@@ -209,7 +209,7 @@ components:
           type: string
           description: Error message
         code:
-          type: number
+          type: integer
           format: int32
           description: An error code
       required:
@@ -243,7 +243,7 @@ components:
           type: string
           description: The user's API token
         flags:
-          type: number
+          type: integer
           description: Bitfield representing user flags
         betaFlags:
           type: array
@@ -362,7 +362,7 @@ components:
           type: string
           description: The release channel of the build
         buildId:
-          type: number
+          type: integer
           format: int32
           description: The build number. Not globally unique, only unique per project.
         checksum:
