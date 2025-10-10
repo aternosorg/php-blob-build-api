@@ -30,8 +30,8 @@ class User
      */
     public function getProjects(): array
     {
-        return array_filter($this->client->listProjects(), function (ProjectListItem $project): bool {
+        return array_values(array_filter($this->client->listProjects(), function (ProjectListItem $project): bool {
             return $project->getData()->getOwner() === $this->data->getName();
-        });
+        }));
     }
 }

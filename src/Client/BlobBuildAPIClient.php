@@ -105,7 +105,7 @@ class BlobBuildAPIClient
     
     /**
      * Search for projects by name
-     * @param string $query
+     * @param string $query The search query (max length: 100 characters)
      * @return ProjectListItem[]
      * @throws ApiException
      */

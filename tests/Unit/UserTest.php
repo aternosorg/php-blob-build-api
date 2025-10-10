@@ -2,7 +2,8 @@
 
 namespace Aternos\BlobBuild\Test\Unit;
 
-use Aternos\BlobBuild\Client\Project;
+
+use Aternos\BlobBuild\Client\ProjectListItem;
 
 class UserTest extends UnitTestCase
 {
@@ -21,7 +22,7 @@ class UserTest extends UnitTestCase
         $projects = $user->getProjects();
         $this->assertCount(1, $projects);
         $project = $projects[0];
-        $this->assertInstanceOf(Project::class, $project);
+        $this->assertInstanceOf(ProjectListItem::class, $project);
         $this->assertSoundMuffler($project->getData());
     }
 }
