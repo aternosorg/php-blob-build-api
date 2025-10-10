@@ -161,7 +161,7 @@ paths:
   /builds/{project}/{channel}/{build}:
     get:
       summary: Get a specific build by its build ID for a project in a specific release channel
-      operationId: getBuild
+      operationId: getProjectBuild
       tags:
         - builds
       parameters:
