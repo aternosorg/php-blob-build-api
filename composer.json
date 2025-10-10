@@ -1,5 +1,5 @@
 {
-    "name": "aternos/blob-build",
+    "name": "aternos/blob-build-api",
     "type": "library",
     "description": "PHP client for the blob.build API. This client is based on OpenAPI.",
     "keywords": [
