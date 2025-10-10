@@ -102,34 +102,6 @@ paths:
                 $ref: '#/components/schemas/BuildMapResponse'
         404:
           $ref: '#/components/responses/ProjectNotFound'
-  /builds/{project}/{channel}/:
-    get:
-      summary: Get all builds for a project in a specific release channel
-      operationId: getProjectBuildsInChannel
-      tags:
-        - builds
-      parameters:
-        - name: project
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The name of the project
-        - name: channel
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The release channel (e.g., stable, beta)
-      responses:
-        '200':
-          description: All builds for the project in the specified release channel
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BuildListResponse'
-        404:
-          $ref: '#/components/responses/ProjectOrChannelNotFound'
   /builds/{project}/{channel}/latest:
     get:
       summary: Get the latest build for a project in a specific release channel
@@ -373,15 +345,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/Build'
-    BuildListResponse:
-      allOf:
-        - $ref: '#/components/schemas/SuccessResponse'
-        - type: object
-          properties:
-            data:
-              type: array
-              items:
-                $ref: '#/components/schemas/Build'
     BuildResponse:
       allOf:
         - $ref: '#/components/schemas/SuccessResponse'

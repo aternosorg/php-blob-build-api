@@ -6,7 +6,6 @@ src/Configuration.php
 src/FormDataProcessor.php
 src/HeaderSelector.php
 src/Model/Build.php
-src/Model/BuildListResponse.php
 src/Model/BuildMapResponse.php
 src/Model/BuildResponse.php
 src/Model/ErrorResponse.php
