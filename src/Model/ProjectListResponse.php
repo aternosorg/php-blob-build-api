@@ -60,7 +60,7 @@ class ProjectListResponse implements ModelInterface, ArrayAccess, JsonSerializab
     protected static array $openAPITypes = [
         'success' => 'bool',
         'message' => 'string',
-        'data' => '\Aternos\BlobBuild\Model\Project[]'
+        'data' => '\Aternos\BlobBuild\Model\ProjectListItem[]'
     ];
 
     /**
@@ -367,7 +367,7 @@ class ProjectListResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Gets data
      *
-     * @return \Aternos\BlobBuild\Model\Project[]
+     * @return \Aternos\BlobBuild\Model\ProjectListItem[]
      */
     public function getData(): array
     {
@@ -377,7 +377,7 @@ class ProjectListResponse implements ModelInterface, ArrayAccess, JsonSerializab
     /**
      * Sets data
      *
-     * @param \Aternos\BlobBuild\Model\Project[] $data data
+     * @param \Aternos\BlobBuild\Model\ProjectListItem[] $data data
      *
      * @return $this
      */

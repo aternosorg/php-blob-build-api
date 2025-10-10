@@ -58,7 +58,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'owner' => 'string',
         'name' => 'string',
         'description' => 'string',
         'repo_link' => 'string',
@@ -73,7 +72,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'owner' => null,
         'name' => null,
         'description' => null,
         'repo_link' => 'uri',
@@ -88,7 +86,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'owner' => false,
         'name' => false,
         'description' => false,
         'repo_link' => true,
@@ -183,7 +180,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'owner' => 'owner',
         'name' => 'name',
         'description' => 'description',
         'repo_link' => 'repoLink',
@@ -198,7 +194,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $setters = [
-        'owner' => 'setOwner',
         'name' => 'setName',
         'description' => 'setDescription',
         'repo_link' => 'setRepoLink',
@@ -213,7 +208,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $getters = [
-        'owner' => 'getOwner',
         'name' => 'getName',
         'description' => 'getDescription',
         'repo_link' => 'getRepoLink',
@@ -278,7 +272,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('owner', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('repo_link', $data ?? [], null);
@@ -314,9 +307,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['owner'] === null) {
-            $invalidProperties[] = "'owner' can't be null";
-        }
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
@@ -349,33 +339,6 @@ class Project implements ModelInterface, ArrayAccess, JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets owner
-     *
-     * @return string
-     */
-    public function getOwner(): string
-    {
-        return $this->container['owner'];
-    }
-
-    /**
-     * Sets owner
-     *
-     * @param string $owner Project owner's name
-     *
-     * @return $this
-     */
-    public function setOwner(string $owner): static
-    {
-        if (is_null($owner)) {
-            throw new InvalidArgumentException('non-nullable owner cannot be null');
-        }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
 
     /**
      * Gets name

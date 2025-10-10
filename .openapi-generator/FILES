@@ -13,6 +13,7 @@ src/Model/ErrorResponse.php
 src/Model/ModelInterface.php
 src/Model/Project.php
 src/Model/ProjectDefaultReleaseChannel.php
+src/Model/ProjectListItem.php
 src/Model/ProjectListResponse.php
 src/Model/ProjectResponse.php
 src/Model/SearchRequest.php

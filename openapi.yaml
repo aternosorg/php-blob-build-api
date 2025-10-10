@@ -161,7 +161,7 @@ paths:
   /builds/{project}/{channel}/{build}:
     get:
       summary: Get a specific build by its build ID for a project in a specific release channel
-      operationId: getProjectBuild
+      operationId: getBuild
       tags:
         - builds
       parameters:
@@ -302,7 +302,7 @@ components:
             data:
               type: array
               items:
-                $ref: '#/components/schemas/Project'
+                $ref: '#/components/schemas/ProjectListItem'
     ProjectResponse:
       allOf:
         - $ref: '#/components/schemas/SuccessResponse'
@@ -310,12 +310,19 @@ components:
           properties:
             data:
               $ref: '#/components/schemas/Project'
+    ProjectListItem:
+      allOf:
+        - $ref: '#/components/schemas/Project'
+        - type: object
+          properties:
+            owner:
+              type: string
+              description: Project owner's name
+          required:
+            - owner
     Project:
       type: object
       properties:
-        owner:
-          type: string
-          description: Project owner's name
         name:
           type: string
           description: Project name
@@ -349,7 +356,6 @@ components:
             fileNaming:
               type: string
       required:
-        - owner
         - name
         - description
         - repoLink
