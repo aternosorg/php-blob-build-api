@@ -5,9 +5,6 @@ namespace Aternos\BlobBuild\Test\Unit;
 use Aternos\BlobBuild\Client\Build;
 use Aternos\BlobBuild\Client\Project;
 use Aternos\BlobBuild\Client\ProjectListItem;
-use Aternos\BlobBuild\Model\Build as BuildModel;
-use Aternos\BlobBuild\Model\Project as ProjectModel;
-use Aternos\BlobBuild\Model\ProjectListItem as ProjectListItemModel;
 
 class ProjectTest extends UnitTestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Aternos\BlobBuild\Client;
 
-use Aternos\BlobBuild\Model\ProjectDefaultReleaseChannel;
 use Aternos\BlobBuild\Model\Project as ProjectModel;
+use Aternos\BlobBuild\Model\ProjectDefaultReleaseChannel;
 
 class Project extends BaseProject
 {
