@@ -5,11 +5,13 @@ src/ApiException.php
 src/Configuration.php
 src/FormDataProcessor.php
 src/HeaderSelector.php
+src/Model/AnyOfInterface.php
 src/Model/Build.php
 src/Model/BuildMapResponse.php
 src/Model/BuildResponse.php
 src/Model/ErrorResponse.php
 src/Model/ModelInterface.php
+src/Model/OneOfInterface.php
 src/Model/Project.php
 src/Model/ProjectDefaultReleaseChannel.php
 src/Model/ProjectListItem.php

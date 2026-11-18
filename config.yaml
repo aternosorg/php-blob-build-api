@@ -1,6 +1,7 @@
 invokerPackage: Aternos\BlobBuild
-artifactVersion: 0.1.0
+artifactVersion: 1.0.2
 generatorName: php-nextgen
 outputDir: .
 sourceFolder: src
 inputSpec: openapi.yaml
+enumUnknownDefaultCase: true
